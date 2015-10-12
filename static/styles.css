@@ -1,0 +1,23 @@
+.contain {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+.navbar {
+  background: transparent;
+  border: none;
+}
+.navbar-brand {
+  font-size: 34px;
+  color: black !important;
+}
+.navbar-header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: -15px !important;
+}
+.navlink {
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
