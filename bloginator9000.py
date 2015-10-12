@@ -1,14 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/home")
-def home():
-    return "HOME PAGE"
+@app.route("/index")
+def index():
+    return render_template ("/index.html")
 
 @app.route("/about")
 def about():
-    return "ABOUT PAGE"
+    return render_template ("/about.html")
 
 @app.route("/login")
 def login():
@@ -23,4 +23,5 @@ def post():
     return "INDIVIDUAL POST"
 
 if __name__ == "__main__":
-        app.run()
+    app.debug = True
+    app.run()
