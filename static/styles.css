@@ -7,6 +7,7 @@
 .navbar {
   background: transparent;
   border: none;
+  margin-bottom: 10px;
 }
 .navbar-brand {
   font-size: 34px;
@@ -19,5 +20,43 @@
 }
 .navlink {
   padding-bottom: 10px;
-  padding-top: 20px;
+  padding-top: 5px !important
+}
+.link-border {
+  border-right: 1px solid lightgray;
+}
+.nav li {
+  height: 30px;
+}
+.nav {
+  padding-top: 10px;
+}
+.blog-title {
+  font-weight: normal;
+  color: black;
+  font-size: 28px;
+}
+.blog-post {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.blog-writer a {
+  color: black;
+  text-decoration: underline;
+}
+.see-more {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  text-align: center;
+}
+.see-more a {
+  color: black;
+}
+.blog-picture {
+  padding-top: 10px;
+}
+.blog-text {
+  padding-top: 10px;
 }
