@@ -1,6 +1,5 @@
 import sqlite3
 
-
 def makeTables():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
@@ -12,20 +11,27 @@ def makeTables():
 def addPost(body, postid, userid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("insert into post values ('{}', '{}', {});".format(body, postid, userid))
+    c.execute("insert into post values ('{}', '{}', '{}')".format(body, postid, userid))
     conn.commit()
     
 def deletePost(postid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("SELECT p FROM post WHERE postid='{}' LIMIT 1".format(postid))
+    c.execute("update post set body='{}' where id='{}'".format("This post has been deleted",postid))
     data = c.fetchone()
     conn.commit()
 
+def deleteComment(commentid):
+    conn = sqlite3.connect("bloginator9000.db")
+    c = conn.cursor()
+    c.execute("update comment set body='{}' where id='{}'".format("This comment has been deleted",commentid))
+    data = c.fetchone()
+    conn.commit()
+    
 def addComment(body, commentid, replyid, userid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("insert into comment values ('{}', '{}', '{}', {});".format(body, commentid, replyid, userid))
+    c.execute("insert into comment values ('{}', '{}', '{}', '{}')".format(body, commentid, replyid, userid))
     conn.commit()
     
 def newUser(username, password):
@@ -56,5 +62,3 @@ def authenticate(username, password):
     if s2 == m:
         return True
     return False
-
-makeTables()
