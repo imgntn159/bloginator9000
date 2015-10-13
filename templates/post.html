@@ -1,0 +1,37 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+  <article>
+    <h2><a href="#">Blog Post 1</a></h2>
+    <h6>Written by <a href="#">John Smith</a> on August 1, 2012.</h6>
+
+      <div>
+        <img src="http://placehold.it/400x240&text=[img]"/>
+      </div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis. Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero. Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis. Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero. Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.</p>
+  </article>
+
+  <hr/>
+  <h3>Comments</h3>
+  <textarea name="paragraph_text" cols="50" rows="10"></textarea>
+  <form method="post" action="index.html">
+    <p class="submit"><input type="submit" name="commit" value="Submit"></p>
+  </form>
+  <br><br>
+  <div class="comment">
+    Dude what is this Lorem ipsum stuff ew 
+    <h6>by <a href="#">Troll69</a> on August 1, 2013</h6>
+  </div>
+  <div class="comment">
+    Idk why Troll69 is such a troll but I like this blog post
+    <h6>by <a href="#">Troll70</a> on August 2, 2013</h6>
+  </div>
+
+</div>
+
+{% endblock %}
