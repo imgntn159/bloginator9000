@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template ("/index.html")
+    return render_template ("/blog.html")
 
 @app.route("/about")
 def about():
@@ -15,17 +15,21 @@ def about():
 @app.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "GET":
-        return "LOGIN PAGE"
-    elif request.method == "POST":
+        return render_template("/login.html")
+    else:
         username = request.form.get("username")
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = hashlib.sha224(username)
             session.save()
             return redirect("/")
 
-@app.route("/signup")
+@app.route("/register", methods=["GET","POST"])
 def signup():
-    return "SIGNUP PAGE"
+    if request.method == "GET":
+        return render_template("signup.html")
+    else:
+        if request.form.get("password") == request.form.get("password2"):
+            database.newUser(request.form.get("username"), request.form.get("password"))
 
 @app.route("/logout")
 def logout():
