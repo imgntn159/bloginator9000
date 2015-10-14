@@ -3,15 +3,15 @@ import sqlite3
 def makeTables():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("create table if not exists post (body text, id text, userid text)")
-    c.execute("create table if not exists comment (body text, id text, replyid text, userid text)")
+    c.execute("create table if not exists post (body text, id text, userid text, timestamp DATETIME)")
+    c.execute("create table if not exists comment (body text, id text, replyid text, userid text, timestamp DATETIME)")
     c.execute("create table if not exists user (username text, password text, id text)")
     conn.commit()
 
 def addPost(body, postid, userid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("insert into post values ('{}', '{}', '{}')".format(body, postid, userid))
+    c.execute("insert into post values ('{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, postid, userid))
     conn.commit()
     
 def deletePost(postid):
@@ -21,17 +21,17 @@ def deletePost(postid):
     data = c.fetchone()
     conn.commit()
 
+def addComment(body, commentid, replyid, userid):
+    conn = sqlite3.connect("bloginator9000.db")
+    c = conn.cursor()
+    c.execute("insert into comment values ('{}', '{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, commentid, replyid, userid))
+    conn.commit()
+
 def deleteComment(commentid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
     c.execute("update comment set body='{}' where id='{}'".format("This comment has been deleted",commentid))
     data = c.fetchone()
-    conn.commit()
-    
-def addComment(body, commentid, replyid, userid):
-    conn = sqlite3.connect("bloginator9000.db")
-    c = conn.cursor()
-    c.execute("insert into comment values ('{}', '{}', '{}', '{}')".format(body, commentid, replyid, userid))
     conn.commit()
     
 def newUser(username, password):
