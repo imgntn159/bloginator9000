@@ -14,10 +14,10 @@ def addPost(body, postid, userid):
     c.execute("insert into post values ('{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, postid, userid))
     conn.commit()
     
-def deletePost(postid):
+def editPost(newtext, postid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("update post set body='{}' where id='{}'".format("This post has been deleted",postid))
+    c.execute("update post set body='{}' where id='{}'".format(newtext, postid))
     data = c.fetchone()
     conn.commit()
 
@@ -27,10 +27,10 @@ def addComment(body, commentid, replyid, userid):
     c.execute("insert into comment values ('{}', '{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, commentid, replyid, userid))
     conn.commit()
 
-def deleteComment(commentid):
+def editComment(newtext, commentid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("update comment set body='{}' where id='{}'".format("This comment has been deleted",commentid))
+    c.execute("update comment set body='{}' where id='{}'".format(newtext, commentid))
     data = c.fetchone()
     conn.commit()
     

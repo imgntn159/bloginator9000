@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, request, redirect
-import database
+import database, hashlib
 
 app = Flask(__name__)
 
@@ -19,9 +19,11 @@ def login():
     else:
         username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
-            session['user'] = hashlib.sha224(username)
-            session.save()
+            session['user'] = username
+            #session.save()
             return redirect("/")
+        else:
+            return "Incorrect username and/or password"
 
 @app.route("/register", methods=["GET","POST"])
 def signup():
@@ -29,12 +31,16 @@ def signup():
         return render_template("signup.html")
     else:
         if request.form.get("password") == request.form.get("password2"):
-            database.newUser(request.form.get("login"), request.form.get("password"))
-            return redirect("/")
-        
+            if database.newUser(request.form.get("login"), request.form.get("password")):
+                return redirect("/")
+            else:
+                return "This username has already been taken"
+        else:
+            return "Your passwords do not match"
+
 @app.route("/logout")
 def logout():
-    session.delete()
+    del session['user']
     return "LOGOUT PAGE"
 
 @app.route("/post")
