@@ -13,19 +13,34 @@ def addPost(body, postid, userid):
     c = conn.cursor()
     c.execute("insert into post values ('{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, postid, userid))
     conn.commit()
-    
+
+def getPosts():
+    conn = sqlite3.connect("bloginator9000.db")
+    c = conn.cursor()
+    c.execute("select * from post order by timestamp")
+    data = c.fetchall()
+    data.reverse()
+    return data
+
 def editPost(newtext, postid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
     c.execute("update post set body='{}' where id='{}'".format(newtext, postid))
-    data = c.fetchone()
-    conn.commit()
+    return c.fetchall()
 
 def addComment(body, commentid, replyid, userid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
     c.execute("insert into comment values ('{}', '{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, commentid, replyid, userid))
     conn.commit()
+
+def getComments():
+    conn = sqlite3.connect("bloginator9000.db")
+    c = conn.cursor()
+    c.execute("select * from comment order by timestamp")
+    data = c.fetchall()
+    data.reverse()
+    return data
 
 def editComment(newtext, commentid):
     conn = sqlite3.connect("bloginator9000.db")
