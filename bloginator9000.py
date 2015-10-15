@@ -1,10 +1,12 @@
 from flask import Flask, render_template, session, request, redirect
+from datetime import datetime
 import database, hashlib
 
 app = Flask(__name__)
 
 @app.route("/")
 @app.route("/index")
+@app.route("/blog")
 def index():
     return render_template ("/blog.html")
 
@@ -20,7 +22,7 @@ def login():
         username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = username
-            #session.save()
+            session['created'] = datetime.now()
             return redirect("/")
         else:
             return "Incorrect username and/or password"
