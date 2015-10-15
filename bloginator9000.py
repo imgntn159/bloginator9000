@@ -17,7 +17,7 @@ def login():
     if request.method == "GET":
         return render_template("/login.html")
     else:
-        username = request.form.get("username")
+        username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = hashlib.sha224(username)
             session.save()
@@ -29,8 +29,9 @@ def signup():
         return render_template("signup.html")
     else:
         if request.form.get("password") == request.form.get("password2"):
-            database.newUser(request.form.get("username"), request.form.get("password"))
-
+            database.newUser(request.form.get("login"), request.form.get("password"))
+            return redirect("/")
+        
 @app.route("/logout")
 def logout():
     session.delete()

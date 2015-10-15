@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, hashlib
 
 def makeTables():
     conn = sqlite3.connect("bloginator9000.db")
@@ -37,13 +37,16 @@ def deleteComment(commentid):
 def newUser(username, password):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    isTaken = "SELECT username FROM user WHERE username=:\"%s\" LIMIT 1" % (username)
+    isTaken = "SELECT username FROM user WHERE username=\"%s\" LIMIT 1" % (username)
     c.execute(isTaken)
     data = c.fetchone()
+    print "B"
     if data is None :
+        print "A"
         m = hashlib.sha224(password)
         u = hashlib.sha224(username)
-        query = "INSERT INTO login VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
+        #query = "INSERT INTO login VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
+        query = "INSERT INTO user VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
         c.execute(query)
         conn.commit()
         return True
