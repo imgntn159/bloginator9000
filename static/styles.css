@@ -1,8 +1,10 @@
 .contain {
-  max-width: 900px;
+  padding-left: 50px;
+  padding-right: 50px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 20px;
+  padding-bottom: 80px;
 }
 .navbar {
   background: transparent;
@@ -37,7 +39,6 @@
   font-size: 28px;
 }
 .blog-post {
-  max-width: 600px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -51,12 +52,28 @@
   width: 100px;
   text-align: center;
 }
-.see-more a {
-  color: black;
+.see-more {
+  color: gray;
+  background-color: transparent;
+  border: 1px solid gray;
+}
+.see-more-contain {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
 }
 .blog-picture {
   padding-top: 10px;
 }
 .blog-text {
-  padding-top: 10px;
+  margin-top: 20px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  max-height: 100px;
+  overflow: hidden;
+}
+.blog-row {
+  height: 520px;
 }
