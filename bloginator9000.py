@@ -5,12 +5,13 @@ app = Flask(__name__)
 
 @app.route("/")
 @app.route("/index")
+@app.route("/blog")
 def index():
-    return render_template ("/blog.html")
+    return render_template ("/blog.html", current_user = session.get('user'))
 
 @app.route("/about")
 def about():
-    return render_template ("/about.html")
+    return render_template ("/about.html", current_user = session.get('user'))
 
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -20,7 +21,8 @@ def login():
         username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = username
-            #session.save()
+            session.permanent = True
+            app.permanent_session_lifetime = 3600
             return redirect("/")
         else:
             return "Incorrect username and/or password"
@@ -41,7 +43,7 @@ def signup():
 @app.route("/logout")
 def logout():
     del session['user']
-    return "LOGOUT PAGE"
+    return redirect("/")
 
 @app.route("/post")
 def post():

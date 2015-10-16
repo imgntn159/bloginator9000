@@ -20,17 +20,18 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="/index">Bloginator 9000</a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="link-border"><a class="navlink" href="/about">About</a></li>
-              {% if loggedin %}
-              <li class="link-border"><a class="navlink" href="/login">Loggout</a></li>
+              {% if current_user is not none %}
+              <li class="link-border"><a class="navlink" href="/logout">Logout</a></li>
               {% else %}
               <li class="link-border"><a class="navlink" href="/login">Login</a></li>
               <li><a class="navlink" href="/register">Register</a></li>
               {% endif %}
-              
+
             </ul>
           </div>
         </div>

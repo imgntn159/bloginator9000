@@ -60,7 +60,6 @@ def newUser(username, password):
         print "A"
         m = hashlib.sha224(password)
         u = hashlib.sha224(username)
-        #query = "INSERT INTO login VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
         query = "INSERT INTO user VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
         c.execute(query)
         conn.commit()
