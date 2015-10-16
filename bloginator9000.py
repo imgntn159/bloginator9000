@@ -1,5 +1,4 @@
 from flask import Flask, render_template, session, request, redirect
-from datetime import datetime
 import database, hashlib
 
 app = Flask(__name__)
@@ -8,7 +7,10 @@ app = Flask(__name__)
 @app.route("/index")
 @app.route("/blog")
 def index():
-    return render_template ("/blog.html")
+    if 'user' in session:
+        return render_template ("/blog.html", current_user=session['user'])
+    else:
+        return render_template ("/blog.html")
 
 @app.route("/about")
 def about():
@@ -22,7 +24,7 @@ def login():
         username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = username
-            session['created'] = datetime.now()
+            session.permanent = True
             return redirect("/")
         else:
             return "Incorrect username and/or password"
@@ -43,7 +45,7 @@ def signup():
 @app.route("/logout")
 def logout():
     del session['user']
-    return "LOGOUT PAGE"
+    return redirect("/")
 
 @app.route("/post")
 def post():
@@ -52,4 +54,5 @@ def post():
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "gottacatch'emall"
+    app.permanent_session_lifetime = 3600
     app.run()
