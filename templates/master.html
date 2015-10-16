@@ -17,7 +17,7 @@
           </div>
             <ul class="nav navbar-nav navbar-right">
               <li class="link-border"><a class="navlink" href="/about">About</a></li>
-              {% if current_user %}
+              {% if current_user is not none %}
               <li class="link-border"><a class="navlink" href="/logout">Logout</a></li>
               {% else %}
               <li class="link-border"><a class="navlink" href="/login">Login</a></li>
