@@ -30,7 +30,7 @@ def login():
 @app.route("/register", methods=["GET","POST"])
 def signup():
     if request.method == "GET":
-        return render_template("signup.html")
+        return render_template("/signup.html")
     else:
         if request.form.get("password") == request.form.get("password2"):
             if database.newUser(request.form.get("login"), request.form.get("password")):
@@ -45,9 +45,18 @@ def logout():
     del session['user']
     return redirect("/")
 
-@app.route("/post")
+@app.route("/post", methods=["GET", "POST"])
 def post():
-    return "INDIVIDUAL POST"
+    return render_template("/post.html")
+
+@app.route("/makepost", methods=["GET", "POST"])
+def makepost():
+    if request.method == "GET":
+        return render_template("/makepost.html")
+    else:
+        form = request.form
+        database.addPost(form.get("paragraph_text"), 0, form.get("post_title"))
+        return redirect("/")
 
 if __name__ == "__main__":
     app.debug = True
