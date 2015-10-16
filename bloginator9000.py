@@ -43,7 +43,7 @@ def signup():
 @app.route("/logout")
 def logout():
     del session['user']
-    return redirect("/")
+    return redirect("/login")
 
 @app.route("/post")
 def post():
