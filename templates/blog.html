@@ -6,17 +6,21 @@
   {% if (loop.index % 2) == 1 %}
     <div class="row blog-row">
   {% endif %}
-  <div class="col-md-6 col-sm-12 blog-post">
-    <h3 class="blog-title text-center">Blog Post 1</h3>
-    <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.userid}}</a> on {{blogitem.timestamp}}</h6>
+    <div class="col-md-6 col-sm-12 blog-post">
+      <h3 class="blog-title text-center">Blog Post 1</h3>
+      <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
 
       <div class="blog-picture">
         <img class="center-block" src="http://placehold.it/400x240&text=[img]"/>
       </div>
 
-    <p class="blog-text">{{blogitem.blog_body}}</p>
-    <div class ="see-more-contain"><button class="see-more">see more</button></div>
-  </div>
+      <p class="blog-text">{{blogitem.blogtext}}</p>
+      <div class ="see-more-contain">
+        <form action="/post/{{blogitem.rowid}}">
+          <button class="see-more">see more</button>
+        </form>
+      </div>
+    </div>
   {% if (loop.index % 2) == 0 %}
     </div>
     <hr class="hrline">
