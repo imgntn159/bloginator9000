@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/index")
 @app.route("/blog")
 def index():
-    return render_template ("/blog.html", current_user = session.get('user'))
+    return render_template ("/blog.html", current_user = session.get('user'),  blogitems = database.getPosts())
 
 @app.route("/about")
 def about():
@@ -55,10 +55,12 @@ def makepost():
         return render_template("/makepost.html")
     else:
         form = request.form
-        database.addPost(form.get("paragraph_text"), 0, form.get("post_title"))
+        database.addPost(form.get("paragraph_text"), 0, session['user'])
         return redirect("/")
 
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "gottacatch'emall"
     app.run()
+
+

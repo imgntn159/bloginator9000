@@ -20,6 +20,7 @@ def getPosts():
     c.execute("select * from post order by timestamp")
     data = c.fetchall()
     data.reverse()
+    data = [dict(zip(['blog_body','postid','userid','timestamp'], each)) for each in data]
     return data
 
 def editPost(newtext, postid):
