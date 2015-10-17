@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+{% block body %}
+<h1>Username</h1>
+<hr>
+<h2>Posts</h2>
+  <div class="col-md-6 col-sm-12 blog-post">
+    <h3 class="blog-title text-center">Blog Post 1</h3>
+    <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
+
+    <div class="blog-picture">
+      <img class="center-block" src="http://placehold.it/400x240&text=[img]"/>
+    </div>
+
+    <p class="blog-text">{{blogitem.blogtext}}</p>
+    <div class ="see-more-contain">
+      <form action="/post/{{blogitem.rowid}}">
+        <button class="see-more">see more</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  
+<h2>Comments</h2>
+  <div class='row comment-row'>
+    <div class="col-md-3">
+      <h6 class="comment-user"><a href="#">{{comment.username}}</a></h6>
+      <h6>{{comment.date}}</h6>
+    </div>
+    <div class="col-md-9">
+      <div class="comment">
+        {{comment.commenttext}}
+      </div>
+    </div>
+    <a href="post.html">see context</a>
+  </div>
+  <hr>
+  
+{% endblock %}
