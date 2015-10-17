@@ -29,7 +29,6 @@ def getPost(postid):
     c.execute("select rowid,* from post where rowid = " + postid)
     data = c.fetchall()
     data = [dict(zip(['rowid','blogtext','postid','username','date'], each)) for each in data]
-    print data[0]
     return data[0]
 
 def editPost(newtext, postid):
@@ -44,12 +43,13 @@ def addComment(body, commentid, replyid, userid):
     c.execute("insert into comment values ('{}', '{}', '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, commentid, replyid, userid))
     conn.commit()
 
-def getComments():
+def getComments(postid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("select * from comment order by timestamp")
+    c.execute("select * from comment where replyid = " + postid + " order by timestamp")
     data = c.fetchall()
     data.reverse()
+    data = [dict(zip(['commenttext','commentid','postid','username','date'], each)) for each in data]    
     return data
 
 def editComment(newtext, commentid):

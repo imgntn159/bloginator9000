@@ -18,8 +18,8 @@
   
   <hr/>
   <h3>Comments</h3>
-  <textarea name="paragraph_text" cols="50" rows="10"></textarea>
-  <form method="post" action="index.html">
+  <form method="post">
+    <textarea name="comment_text" cols="50" rows="10"></textarea>
     <p class="submit"><input type="submit" name="commit" value="Submit"></p>
   </form>
   <br><br>
@@ -33,10 +33,12 @@
   </div>
   
   <!-- comment loop -->
+
   {% for comment in comments %}
   <div class="comment">
-    {{comment}} 
-    <h6>by <a href="#">{{usernames[loop.index0]}}</a> on {{dates[loop.index0]}}</h6>
+    {{comment.commenttext}}
+    <h6>by <a href="#">{{comment.username}}</a> on {{comment.date}}</h6>
+    <!--<h6>by <a href="#">{usernames[loop.index0]}</a> on {dates[loop.index0]}</h6>-->
   </div>
   {% endfor %}
 

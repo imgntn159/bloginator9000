@@ -50,7 +50,12 @@ def logout():
 
 @app.route("/post/<postid>", methods=["GET", "POST"])
 def post(postid):
-    return render_template("/post.html", blogitem = database.getPost(postid))
+    if request.method == "GET":
+        database.getComments(postid)
+        return render_template("/post.html", blogitem = database.getPost(postid), comments = database.getComments(postid))
+    else:#addComment(commentbody, commentid, postid, userid)
+        database.addComment(request.form.get("comment_text"),0, postid, session['user'])
+        return redirect("/post/" + postid)
 
 @app.route("/makepost", methods=["GET", "POST"])
 def makepost():
