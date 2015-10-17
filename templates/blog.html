@@ -4,6 +4,25 @@
 
 <div class="container-fluid">
 
+
+
+{% for blogitem in blogitems %}
+<div>
+    <div class="col-md-6 col-sm-12 blog-post">
+      <h3 class="blog-title text-center">Blog Post 1</h3>
+      <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.userid}}</a> on {{blogitem.timestamp}}</h6>
+
+        <div class="blog-picture">
+          <img class="center-block" src="http://placehold.it/400x240&text=[img]"/>
+        </div>
+
+      <p class="blog-text">{{blogitem.blog_body}}</p>
+      <div class ="see-more-contain"><button class="see-more">see more</button></div>
+    </div>
+</div>
+{% endfor %}
+
+<!--
   <div class="row blog-row">
     <div class="col-md-6 col-sm-12 blog-post">
       <h3 class="blog-title text-center">Blog Post 1</h3>
@@ -142,6 +161,5 @@ Blogpost loop
   {% endfor %}
 -->
 
-</div>
 
 {% endblock %}
