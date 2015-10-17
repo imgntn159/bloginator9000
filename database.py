@@ -17,11 +17,20 @@ def addPost(body, postid, userid):
 def getPosts():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("select * from post order by timestamp")
+    c.execute("select rowid,* from post order by timestamp")
     data = c.fetchall()
     data.reverse()
-    data = [dict(zip(['blog_body','postid','userid','timestamp'], each)) for each in data]
+    data = [dict(zip(['rowid','blogtext','postid','username','date'], each)) for each in data]
     return data
+
+def getPost(postid):
+    conn = sqlite3.connect("bloginator9000.db")
+    c = conn.cursor()
+    c.execute("select rowid,* from post where rowid = " + postid)
+    data = c.fetchall()
+    data = [dict(zip(['rowid','blogtext','postid','username','date'], each)) for each in data]
+    print data[0]
+    return data[0]
 
 def editPost(newtext, postid):
     conn = sqlite3.connect("bloginator9000.db")

@@ -6,16 +6,16 @@
 
   <!-- has variables for title, username, date, and blogtext -->
   <article>
-    <h2><a href="#">{{title}}</a></h2>
-    <h6>Written by <a href="#">{{username}}</a> on {{date}}</h6>
-
+    <h2><a href="#">{{blogitem.title}}</a></h2>
+    <h6>Written by <a href="#">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
+    
       <div>
         <img src="http://placehold.it/400x240&text=[img]"/>
       </div>
-
-    <p>{{blogtext}}</p>
+      
+    <p>{{blogitem.blogtext}}</p>
   </article>
-
+  
   <hr/>
   <h3>Comments</h3>
   <textarea name="paragraph_text" cols="50" rows="10"></textarea>
