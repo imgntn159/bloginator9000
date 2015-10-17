@@ -32,65 +32,20 @@
   </div>
   <div class="row comment-section">
     <div class="col-md-8 col-md-offset-2">
-      <div class='row comment-row'>
-        <div class="col-md-3">
-          <h6 class="comment-user"><a href="#">Troll69</a></h6>
-          <h6>August 1, 2013</h6>
-        </div>
-        <div class="col-md-9">
-          <div class="comment">
-            Dude what is this Lorem ipsum stuff ew
+      {% for comment in comments %}
+        <div class='row comment-row'>
+          <div class="col-md-3">
+            <h6 class="comment-user"><a href="#">{{comment.username}}</a></h6>
+            <h6>{{comment.date}}</h6>
+          </div>
+          <div class="col-md-9">
+            <div class="comment">
+              {{comment.commenttext}}
+            </div>
           </div>
         </div>
-      </div>
-      <hr>
-      <div class='row comment-row'>
-        <div class="col-md-3">
-          <h6><a href="#">Troll70</a></h6>
-          <h6>August 1, 2013</h6>
-        </div>
-        <div class="col-md-9">
-          <div class="comment">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis. Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero. Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class='row comment-row'>
-        <div class="col-md-3">
-          <h6><a href="#">Troll69</a></h6>
-          <h6>August 1, 2013</h6>
-        </div>
-        <div class="col-md-9">
-          <div class="comment">
-            Dude what is this Lorem ipsum stuff ew
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class='row comment-row'>
-        <div class="col-md-3">
-          <h6><a href="#">Troll69</a></h6>
-          <h6>August 1, 2013</h6>
-        </div>
-        <div class="col-md-9">
-          <div class="comment">
-            Dude what is this Lorem ipsum stuff ew
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class='row comment-row'>
-        <div class="col-md-3">
-          <h6><a href="#">Troll69</a></h6>
-          <h6>August 1, 2013</h6>
-        </div>
-        <div class="col-md-9">
-          <div class="comment">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis. Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero. Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.
-          </div>
-        </div>
-      </div>
+        <hr>
+      {% endfor %}
     </div>
   </div>
 </div>
