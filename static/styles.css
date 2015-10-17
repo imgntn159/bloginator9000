@@ -42,17 +42,11 @@
   margin-right: auto;
   margin-left: auto;
 }
-.blog-writer a {
-  color: black;
-  text-decoration: underline;
-}
 .see-more {
   margin-left: auto;
   margin-right: auto;
   width: 100px;
   text-align: center;
-}
-.see-more {
   background-color: transparent;
   border: 1px solid gray;
   height: 30px;
@@ -80,7 +74,7 @@
   overflow: hidden;
 }
 .blog-row {
-  height: 520px;
+  height: 460px;
 }
 .login {
   width: 380px;
@@ -125,4 +119,55 @@
   font-size: 14px;
   color: red;
   text-align: center;
+}
+.hrline {
+  margin-bottom: 40px;
+}
+.post-text {
+  padding-top: 30px;
+  font-size: 16px;
+}
+.comment-text {
+  resize: none;
+  overflow: hidden;
+  min-height: 80px;
+  min-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 5px;
+}
+.comment-text:focus {
+  outline: none;
+}
+.comment-title {
+  margin-bottom: 20px;
+  font-weight: normal;
+  color: black;
+  font-size: 24px;
+}
+.comment-submit {
+  margin-top: 20px;
+  width: 80px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid gray;
+  height: 35px;
+  padding-top: 4px;
+  float: right;
+}
+.comment-block {
+  height: auto;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.comment-section {
+  margin-top: 40px;
+}
+.comment-row {
+  margin-top: 10px;
+}
+.comment-user {
+  color: black;
 }

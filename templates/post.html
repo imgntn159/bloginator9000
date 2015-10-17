@@ -3,43 +3,147 @@
 {% block body %}
 
 <div class="container-fluid">
-
   <!-- has variables for title, username, date, and blogtext -->
-  <article>
-    <h2><a href="#">{{title}}</a></h2>
-    <h6>Written by <a href="#">{{username}}</a> on {{date}}</h6>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3 class="blog-title text-center">Blog Post 1</h3>
+      <h6 class="blog-writer text-center">Written by <a href="#">John Smith</a> on 10/17/15</h6>
 
-      <div>
-        <img src="http://placehold.it/400x240&text=[img]"/>
+        <div class="blog-picture">
+          <img class="center-block" src="http://placehold.it/400x240&text=[img]"/>
+        </div>
+
+      <p class="post-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis.
+        Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero.
+        Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis.
+        Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero.
+        Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis.
+        Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero.
+        Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis.
+        Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero.
+        Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="comment-block">
+        <h3 class="comment-title text-center">Comments</h3>
+        <form method="post" action="index.html">
+          <textarea  id="comment" class="comment-text" name="paragraph_text"></textarea>
+          <button class="comment-submit">Post</button>
+        </form>
       </div>
-
-    <p>{{blogtext}}</p>
-  </article>
-
-  <hr/>
-  <h3>Comments</h3>
-  <textarea name="paragraph_text" cols="50" rows="10"></textarea>
-  <form method="post" action="index.html">
-    <p class="submit"><input type="submit" name="commit" value="Submit"></p>
-  </form>
-  <br><br>
-  <div class="comment">
-    Dude what is this Lorem ipsum stuff ew 
-    <h6>by <a href="#">Troll69</a> on August 1, 2013</h6>
+    </div>
   </div>
-  <div class="comment">
-    Idk why Troll69 is such a troll but I like this blog post
-    <h6>by <a href="#">Troll70</a> on August 2, 2013</h6>
+  <div class="row comment-section">
+    <div class="col-md-8 col-md-offset-2">
+      <div class='row comment-row'>
+        <div class="col-md-3">
+          <h6 class="comment-user"><a href="#">Troll69</a></h6>
+          <h6>August 1, 2013</h6>
+        </div>
+        <div class="col-md-9">
+          <div class="comment">
+            Dude what is this Lorem ipsum stuff ew
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class='row comment-row'>
+        <div class="col-md-3">
+          <h6><a href="#">Troll70</a></h6>
+          <h6>August 1, 2013</h6>
+        </div>
+        <div class="col-md-9">
+          <div class="comment">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis. Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero. Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class='row comment-row'>
+        <div class="col-md-3">
+          <h6><a href="#">Troll69</a></h6>
+          <h6>August 1, 2013</h6>
+        </div>
+        <div class="col-md-9">
+          <div class="comment">
+            Dude what is this Lorem ipsum stuff ew
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class='row comment-row'>
+        <div class="col-md-3">
+          <h6><a href="#">Troll69</a></h6>
+          <h6>August 1, 2013</h6>
+        </div>
+        <div class="col-md-9">
+          <div class="comment">
+            Dude what is this Lorem ipsum stuff ew
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class='row comment-row'>
+        <div class="col-md-3">
+          <h6><a href="#">Troll69</a></h6>
+          <h6>August 1, 2013</h6>
+        </div>
+        <div class="col-md-9">
+          <div class="comment">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu libero arcu. Aliquam sit amet facilisis felis. Nunc vel erat tempor orci sagittis tempor. Duis eget sapien eleifend, volutpat ligula posuere, porta libero. Nam vestibulum ultricies aliquam. Nunc feugiat purus quam. Pellentesque sapien est, semper quis condimentum sed, facilisis sit amet odio.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  <!-- comment loop -->
+
+  <!-- comment loop
   {% for comment in comments %}
   <div class="comment">
-    {{comment}} 
+    {{comment}}
     <h6>by <a href="#">{{usernames[loop.index0]}}</a> on {{dates[loop.index0]}}</h6>
   </div>
   {% endfor %}
-
+-->
 </div>
+<script type="text/javascript">
+  var observe;
+  if (window.attachEvent) {
+    observe = function (element, event, handler) {
+        element.attachEvent('on'+event, handler);
+    };
+  }
+  else {
+    observe = function (element, event, handler) {
+        element.addEventListener(event, handler, false);
+    };
+  }
+  function init () {
+    var text = document.getElementById('comment');
+    function resize () {
+      text.style.height = 'auto';
+      text.style.height = text.scrollHeight+'px';
+    }
+    /* 0-timeout to get the already changed text */
+    function delayedResize () {
+      window.setTimeout(resize, 0);
+    }
+    observe(text, 'change',  resize);
+    observe(text, 'cut',     delayedResize);
+    observe(text, 'paste',   delayedResize);
+    observe(text, 'drop',    delayedResize);
+    observe(text, 'keydown', delayedResize);
+    text.focus();
+    text.select();
+    resize();
+  }
+  init();
+</script>
 
 {% endblock %}
