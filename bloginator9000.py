@@ -25,7 +25,8 @@ def login():
             app.permanent_session_lifetime = 3600
             return redirect("/")
         else:
-            return "Incorrect username and/or password"
+            error = "Incorrect username and/or password"
+            return render_template("login.html", error = error)
 
 @app.route("/register", methods=["GET","POST"])
 def signup():
@@ -36,9 +37,11 @@ def signup():
             if database.newUser(request.form.get("login"), request.form.get("password")):
                 return redirect("/")
             else:
-                return "This username has already been taken"
+                error = "Username has already been taken"
+                return render_template("signup.html", error=error)
         else:
-            return "Your passwords do not match"
+            error = "Passwords do not match"
+            return render_template("signup.html", error=error)
 
 @app.route("/logout")
 def logout():
@@ -62,5 +65,3 @@ if __name__ == "__main__":
     app.debug = True
     app.secret_key = "gottacatch'emall"
     app.run()
-
-

@@ -12,7 +12,7 @@
   margin-bottom: 10px;
 }
 .navbar-brand {
-  font-size: 34px;
+  font-size: 28px;
   color: black !important;
 }
 .navbar-header {
@@ -53,9 +53,14 @@
   text-align: center;
 }
 .see-more {
-  color: gray;
   background-color: transparent;
   border: 1px solid gray;
+  height: 30px;
+  padding-top: 4px;
+}
+.see-more a {
+  color: gray;
+  text-decoration: none;
 }
 .see-more-contain {
   margin-left: auto;
@@ -76,4 +81,48 @@
 }
 .blog-row {
   height: 520px;
+}
+.login {
+  width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 60px 40px 60px;
+  margin-top: 30px;
+  border: 1px solid gray;
+}
+.login-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.login-form input {
+  display: block;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  height: 35px;
+  border: 1px solid gray;
+}
+.login-form button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+  margin-top: 20px;
+  border: 1px solid gray;
+  width: 100px;
+  height: 35px;
+  font-size: 16px;
+}
+.login-form p {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.error-message {
+  font-size: 14px;
+  color: red;
+  text-align: center;
 }
