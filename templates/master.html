@@ -24,7 +24,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               {% if current_user is not none %}
-              <li class="link-border"><a class="navlink" href="/">Profile</a></li>
+              <li class="link-border"><a class="navlink" href="/profile">{{current_user}}</a></li>
               <li class="link-border"><a class="navlink" href="/makepost">Submit Post</a></li>
               {% endif %}
               <li class="link-border"><a class="navlink" href="/about">About</a></li>

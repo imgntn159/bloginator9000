@@ -52,19 +52,23 @@ def logout():
 def post(postid):
     if request.method == "GET":
         database.getComments(postid)
-        return render_template("/post.html", blogitem = database.getPost(postid), comments = database.getComments(postid))
+        return render_template("/post.html", blogitem = database.getPost(postid), comments = database.getComments(postid), current_user = session.get('user'))
     else:#addComment(commentbody, commentid, postid, userid)
-        database.addComment(request.form.get("comment_text"),0, postid, session['user'])
+        database.addComment(request.form.get("paragraph_text"),0, postid, session['user'])
         return redirect("/post/" + postid)
 
 @app.route("/makepost", methods=["GET", "POST"])
 def makepost():
     if request.method == "GET":
-        return render_template("/makepost.html")
+        return render_template("/makepost.html", current_user = session.get('user'))
     else:
         form = request.form
         database.addPost(form.get("paragraph_text"), 0, session['user'])
         return redirect("/")
+
+@app.route("/profile")
+def profile():
+  return render_template("/profile.html")
 
 if __name__ == "__main__":
     app.debug = True
