@@ -81,7 +81,7 @@ def getuser():
 @app.route("/user/<userid>")
 def profile(userid):
     print database.getPost("userid",userid)
-    return render_template("profile.html", username = session['user'], blogitems = database.getPost("userid",userid), comments = database.getComments("userid",userid));
+    return render_template("profile.html", current_user = session['user'], blogitems = database.getPost("userid",userid), comments = database.getComments("userid",userid));
 
 if __name__ == "__main__":
     app.debug = True

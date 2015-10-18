@@ -8,11 +8,7 @@
   {% endif %}
     <div class="col-md-6 col-sm-12 blog-post">
       <h3 class="blog-title text-center">Blog Post 1</h3>
-      <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
-
-      <div class="blog-picture">
-        <img class="center-block" src="http://placehold.it/400x240&text=[img]"/>
-      </div>
+      <h6 class="blog-writer text-center">Written by <a href="/user/{{blogitem.username}}">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
 
       <p class="blog-text">{{blogitem.blogtext}}</p>
       <div class ="see-more-contain">

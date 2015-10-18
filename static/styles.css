@@ -70,11 +70,12 @@
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
-  max-height: 100px;
+  min-height: 100px;
+  max-height: 150px;
   overflow: hidden;
 }
 .blog-row {
-  height: 460px;
+  height: 300px;
 }
 .login {
   width: 380px;
@@ -96,6 +97,10 @@
   width: 250px;
   height: 35px;
   border: 1px solid gray;
+  padding-left: 5px;
+}
+.login-form input:focus {
+  outline: none;
 }
 .login-form button {
   display: block;

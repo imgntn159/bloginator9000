@@ -1,17 +1,16 @@
 {% extends "master.html" %}
 
 {% block body %}
-<h1>{{username}}</h1>
-<hr>
+<h1>{{current_user}}</h1>
+<br>
 <h2>Posts</h2>
 {% for blogitem in blogitems %}
+  {% if (loop.index % 2) == 1 %}
+    <div class="row blog-row">
+  {% endif %}
   <div class="col-md-6 col-sm-12 blog-post">
     <h3 class="blog-title text-center">Blog Post 1</h3>
     <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
-
-    <div class="blog-picture">
-      <img class="center-block" src="http://placehold.it/400x240&text=[img]"/>
-    </div>
 
     <p class="blog-text">{{blogitem.blogtext}}</p>
     <div class ="see-more-contain">
@@ -20,7 +19,15 @@
       </form>
     </div>
   </div>
-  <hr>
+  {% if (loop.index % 2) == 0 %}
+    </div>
+    <hr class="hrline">
+  {% endif %}
+  {% if loop.last %}
+    {% if (loop.index % 2) == 1 %}
+      </div>
+    {% endif %}
+  {% endif %}
 {% endfor %}
 
   <h2>Comments</h2>
@@ -40,5 +47,5 @@
     {% endfor %}
   </div>
   <hr>
-  
+
 {% endblock %}
