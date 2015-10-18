@@ -54,13 +54,13 @@ def logout():
 @app.route("/post/<postid>", methods=["GET", "POST"])
 def post(postid):
     if request.method == "GET":
-        return render_template("/post.html", current_user = session.get('user'), blogitem = database.getPost("rowid",postid)[0], comments = database.getComments("replyid", postid))
-    else:#addComment(commentbody, commentid, postid, userid)
+        return render_template("/post.html", current_user = session.get('user'), blogitem = database.getPost("postid",postid)[0], comments = database.getComments("postid", postid))
+    else:
         if 'user' in session:
-            database.addComment(request.form.get("comment_text"), 0, postid, session['user'])
+            database.addComment(request.form.get("comment_text"), postid, session['user'])
             return redirect("/post/" + postid)
         else:
-            return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost("rowid",postid), comments = database.getComments("replyid",postid), error = "You must be logged in to do that")
+            return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost("PRIMARY KEY",postid), comments = database.getComments("replyid",postid), error = "You must be logged in to do that")
 
 @app.route("/makepost", methods=["GET", "POST"])
 def makepost():
@@ -71,7 +71,7 @@ def makepost():
             return render_template("/makepost.html")
     else:
         form = request.form
-        database.addPost(form.get("paragraph_text"), 0, session['user'])
+        database.addPost(form.get("title"), form.get("paragraph_text"), session['user'])
         return redirect("/")
 
 @app.route("/user")

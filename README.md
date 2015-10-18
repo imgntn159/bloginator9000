@@ -33,11 +33,11 @@ You could be the 1 to push us OVER 9000!!!!!
 1. Make sure you have git installed as well as virtualenv with the flask library.
 2. Open your terminal and navigate to the folder you wish to install to.
 3. Copy the clone URL from our github.
-4. Type git clone and then paste the clone URL and press enter.
+4. Type "git clone " and then paste the clone URL and press enter.
 5. Launch your virtualenv.
-6. Type in python blogginator9000.py and press enter.
+6. Type in "python blogginator9000.py" and press enter.
 7. Open the web browser of your choice.
-8. Type in localhost:5000.
+8. Type in "localhost:5000".
 9. Enjoy.
 
 ###Timeline
