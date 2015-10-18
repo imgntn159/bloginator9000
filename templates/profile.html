@@ -1,9 +1,10 @@
 {% extends "master.html" %}
 
 {% block body %}
-<h1>Username</h1>
+<h1>{{username}}</h1>
 <hr>
 <h2>Posts</h2>
+{% for blogitem in blogitems %}
   <div class="col-md-6 col-sm-12 blog-post">
     <h3 class="blog-title text-center">Blog Post 1</h3>
     <h6 class="blog-writer text-center">Written by <a href="#">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
@@ -20,19 +21,23 @@
     </div>
   </div>
   <hr>
-  
-<h2>Comments</h2>
+{% endfor %}
+
+  <h2>Comments</h2>
   <div class='row comment-row'>
+    {% for comment in comments %}
     <div class="col-md-3">
       <h6 class="comment-user"><a href="#">{{comment.username}}</a></h6>
       <h6>{{comment.date}}</h6>
     </div>
     <div class="col-md-9">
       <div class="comment">
-        {{comment.commenttext}}
+	{{comment.commenttext}}
       </div>
     </div>
-    <a href="post.html">see context</a>
+    <a href="/post/{{comment.postid}}">see context</a>
+    <hr>
+    {% endfor %}
   </div>
   <hr>
   
