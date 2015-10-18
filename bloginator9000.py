@@ -51,20 +51,34 @@ def logout():
 @app.route("/post/<postid>", methods=["GET", "POST"])
 def post(postid):
     if request.method == "GET":
-        database.getComments(postid)
-        return render_template("/post.html", blogitem = database.getPost(postid), comments = database.getComments(postid))
+        return render_template("/post.html", blogitem = database.getPost("rowid",postid)[0], comments = database.getComments("replyid",postid))
     else:#addComment(commentbody, commentid, postid, userid)
-        database.addComment(request.form.get("comment_text"),0, postid, session['user'])
-        return redirect("/post/" + postid)
+        if 'user' in session:
+            database.addComment(request.form.get("comment_text"),0, postid, session['user'])
+            return redirect("/post/" + postid)
+        else:
+            return redirect("/login")
 
 @app.route("/makepost", methods=["GET", "POST"])
 def makepost():
     if request.method == "GET":
-        return render_template("/makepost.html")
+        if 'user' in session:
+            return render_template("/makepost.html")
+        else:
+            redirect("/login")
     else:
         form = request.form
         database.addPost(form.get("paragraph_text"), 0, session['user'])
         return redirect("/")
+
+@app.route("/user")
+def getuser():
+    return redirect("/user/" + session['user'])
+
+@app.route("/user/<userid>")
+def profile(userid):
+    print database.getPost("userid",userid)
+    return render_template("profile.html", username = session['user'], blogitems = database.getPost("userid",userid), comments = database.getComments("userid",userid));
 
 if __name__ == "__main__":
     app.debug = True
