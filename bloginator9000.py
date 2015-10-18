@@ -16,7 +16,10 @@ def about():
 @app.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "GET":
-        return render_template("/login.html", current_user = session.get('user'))
+        if session.get('user') != None:
+            return redirect("/")
+        else:
+            return render_template("/login.html", current_user = None)
     else:
         username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
@@ -54,7 +57,7 @@ def post(postid):
         return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost(postid), comments = database.getComments(postid))
     else:
         if session.get('user') == None:
-            return redirect("/post/" + postid)
+            return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost(postid), comments = database.getComments(postid), error = "You must be logged in to do that")
         else:#addComment(commentbody, commentid, postid, userid)
             database.addComment(request.form.get("paragraph_text"), 0, postid, session['user'])
             return redirect("/post/" + postid)
