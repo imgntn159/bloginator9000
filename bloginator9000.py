@@ -16,7 +16,10 @@ def about():
 @app.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "GET":
-        return render_template("/login.html")
+        if session.get('user') != None:
+            return redirect("/")
+        else:
+            return render_template("/login.html", current_user = None)
     else:
         username = request.form.get("login")
         if (database.authenticate(username, request.form.get("password"))):
@@ -26,12 +29,12 @@ def login():
             return redirect("/")
         else:
             error = "Incorrect username and/or password"
-            return render_template("login.html", error = error)
+            return render_template("login.html", current_user = None, error = error)
 
 @app.route("/register", methods=["GET","POST"])
 def signup():
     if request.method == "GET":
-        return render_template("/signup.html")
+        return render_template("/signup.html", current_user = session.get('user'))
     else:
         if request.form.get("password") == request.form.get("password2"):
             if database.newUser(request.form.get("login"), request.form.get("password")):
@@ -45,31 +48,31 @@ def signup():
 
 @app.route("/logout")
 def logout():
-    del session['user']
+    session.pop('user', None)
     return redirect("/login")
 
 @app.route("/post/<postid>", methods=["GET", "POST"])
 def post(postid):
     if request.method == "GET":
-        return render_template("/post.html", blogitem = database.getPost("rowid",postid)[0], comments = database.getComments("replyid",postid))
+
+        return render_template("/post.html", current_user = session.get('user'), blogitem = database.getPost("rowid",postid)[0], comments = database.getComments("replyid", postid))
     else:#addComment(commentbody, commentid, postid, userid)
         if 'user' in session:
-            database.addComment(request.form.get("comment_text"),0, postid, session['user'])
+            database.addComment(request.form.get("comment_text"), 0, postid, session['user'])
             return redirect("/post/" + postid)
         else:
-            return redirect("/login")
+            return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost(postid), comments = database.getComments(postid), error = "You must be logged in to do that")
 
 @app.route("/makepost", methods=["GET", "POST"])
 def makepost():
     if request.method == "GET":
-        if 'user' in session:
+        if session.get('user') == None:
+            return redirect("/register")
             return render_template("/makepost.html")
         else:
-            redirect("/login")
-    else:
-        form = request.form
-        database.addPost(form.get("paragraph_text"), 0, session['user'])
-        return redirect("/")
+            form = request.form
+            database.addPost(form.get("paragraph_text"), 0, session['user'])
+            return redirect("/")
 
 @app.route("/user")
 def getuser():

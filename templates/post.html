@@ -23,7 +23,8 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="comment-block">
         <h3 class="comment-title text-center">Comments</h3>
-        <form method="post" action="">
+	<h4 class="error-message">{{error}}</h4>
+        <form method="post">
           <textarea  id="comment" class="comment-text" name="comment_text"></textarea>
           <button class="comment-submit">Post</button>
         </form>
