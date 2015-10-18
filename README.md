@@ -53,4 +53,4 @@ October 17th - CSS done, comments can be made
 <br>
 October 18th - Added profile page and finished readme
 
-####Written by Roy Xu and Kaizen Castanos
+######Written by Roy Xu and Kaizen Castanos
