@@ -42,10 +42,15 @@ You could be the 1 to push us OVER 9000!!!!!
 
 ###Timeline
 October 9th - Databases set up, routes set up, and basic html templates created
+<br>
 October 12th - Login system done
+<br>
 October 13th - Backend done, HTML templates done, posts can be made
+<br>
 October 16th - Routes done
+<br>
 October 17th - CSS done, comments can be made
+<br>
 October 18th - Added profile page and finished readme
 
 ####Written by Roy Xu and Kaizen Castanos
