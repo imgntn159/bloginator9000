@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 import database, hashlib
+from datetime import timedelta
 
 app = Flask(__name__)
 
@@ -26,7 +27,7 @@ def login():
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = username
             session.permanent = True
-            app.permanent_session_lifetime = 3600
+            app.permanent_session_lifetime = timedelta(minutes = 1);
             return redirect("/")
         else:
             error = "Incorrect username and/or password"
@@ -70,9 +71,9 @@ def post(postid):
 def makepost():
     if request.method == "GET":
         if session.get('user') == None:
-            return redirect("/register")
+            return redirect("/login")
         else:
-            return render_template("/makepost.html")
+            return render_template("/makepost.html", current_user = session.get('user'))
     else:
         form = request.form
         database.addPost(form.get("title"), form.get("paragraph_text"), session['user'])
