@@ -200,6 +200,7 @@
   width: 450px;
   border: 1px solid gray;
   padding: 10px;
+  overflow: hidden;
 }
 .makeform-form textarea:focus {
   outline: none;

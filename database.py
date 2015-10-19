@@ -12,7 +12,6 @@ def addPost(title, body, userid):
     try:
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
-        print body
         c.execute("insert into post values (?, ?, NULL, ?, datetime(CURRENT_TIMESTAMP))",(title, body, userid))
         conn.commit()
         return True
@@ -52,7 +51,7 @@ def getComments(key, postid):
     c.execute("select * from comment where {} = '{}' order by timestamp".format(key,postid))
     data = c.fetchall()
     data.reverse()
-    data = [dict(zip(['commenttext','commentid','postid','username','date'], each)) for each in data]    
+    data = [dict(zip(['commenttext','commentid','postid','username','date'], each)) for each in data]
     return data
 
 def newUser(username, password):

@@ -7,6 +7,7 @@ app = Flask(__name__)
 @app.route("/index")
 @app.route("/blog")
 def index():
+    database.makeTables();
     return render_template ("/blog.html", current_user = session.get('user'),  blogitems = database.getPosts())
 
 @app.route("/about")
@@ -41,7 +42,7 @@ def signup():
     else:
         if request.form.get("password") == request.form.get("password2"):
             if database.newUser(request.form.get("login"), request.form.get("password")):
-                return redirect("/")
+                return redirect("/login")
             else:
                 error = "Username has already been taken"
                 return render_template("signup.html", error=error, current_user = None)
