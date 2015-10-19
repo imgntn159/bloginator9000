@@ -12,7 +12,8 @@ def addPost(title, body, userid):
     try:
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
-        c.execute("insert into post values ('{}', '{}', NULL, '{}', datetime(CURRENT_TIMESTAMP))".format(title, body, userid))
+        print body
+        c.execute("insert into post values (?, ?, NULL, ?, datetime(CURRENT_TIMESTAMP))",(title, body, userid))
         conn.commit()
         return True
     except:
@@ -39,7 +40,7 @@ def addComment(body, replyid, userid):
     try:
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
-        c.execute("insert into comment values ('{}', NULL, '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, replyid, userid))
+        c.execute("insert into comment values (?, NULL, ?, ?, datetime(CURRENT_TIMESTAMP))",(body, replyid, userid))
         conn.commit()
         return True
     except:

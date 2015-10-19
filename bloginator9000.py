@@ -34,10 +34,7 @@ def login():
 @app.route("/register", methods=["GET","POST"])
 def signup():
     if request.method == "GET":
-        if session.get('user') != None:
-            return redirect("/")
-        else:
-            return render_template("/signup.html", current_user = session.get('user'))
+        return render_template("/signup.html", current_user = session.get('user'))
     else:
         if request.form.get("password") == request.form.get("password2"):
             if database.newUser(request.form.get("login"), request.form.get("password")):
@@ -63,15 +60,15 @@ def post(postid):
             database.addComment(request.form.get("comment_text"), postid, session['user'])
             return redirect("/post/" + postid)
         else:
-            return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost("postid",postid), comments = database.getComments("postid",postid), error = "You must be logged in to do that")
+            return render_template("/post.html", current_user = session.get('user'),  blogitem = database.getPost("postid",postid)[0], comments = database.getComments("postid",postid), error = "You must be logged in to do that")
 
 @app.route("/makepost", methods=["GET", "POST"])
 def makepost():
     if request.method == "GET":
         if session.get('user') == None:
-            return redirect("/login")
+            return redirect("/register")
         else:
-            return render_template("/makepost.html", current_user = session.get('user'))
+            return render_template("/makepost.html")
     else:
         form = request.form
         database.addPost(form.get("title"), form.get("paragraph_text"), session['user'])

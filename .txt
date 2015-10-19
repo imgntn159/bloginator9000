@@ -1,0 +1,89 @@
+commit 303fcd37737575cc4cbab4029201b197c4abbf41
+tree 056ab6b3670c2b2f003b5c8a0b7a5518874ca528
+parent b1f79e3dadf67d3bb8ef0f0d6e5b4f04a2294e5a
+author imgntn159 <imgtn159@gmail.com> 1445212861 +0000
+committer imgntn159 <imgtn159@gmail.com> 1445212861 +0000
+
+    added readme to the about page
+
+diff --git a/templates/about.html b/templates/about.html
+index e21635b..9f094f0 100644
+--- a/templates/about.html
++++ b/templates/about.html
+@@ -6,12 +6,68 @@
+ </center>
+ <hr/>
+ 
+-<center>
+-  <p>Nam lobortis feugiat libero. Donec felis velit, sagittis vitae turpis tristique,
+-  maximus gravida mi. Duis faucibus arcu venenatis fringilla aliquet. 
+-  Etiam consectetur urna magna, sed vulputate mauris ultricies sed. 
+-  Aliquam eleifend sit amet lorem eget tempus. Quisque quis sem magna. 
+-  Integer lorem nunc, placerat quis cursus id, suscipit quis tellus. 
+-  Vestibulum ut mattis tellus, vitae faucibus purus.</p>
+-</center>
++<div style="width: 700px; margin: 0 auto; overflow: hidden;">
++<p>a.k.a The greatest blog engine you will ever use. Want your voice heard? Sick of
++Facebook's complicated and cluttered interface? Is your grandma posting
++embarrassing comments for all your friends to see? Well we at blogginator9000
++promise that we can solve about two-thirds of those problems! Try it now!
++You could be the 1 to push us OVER 9000!!!!!</p>
++<br>
++
++<h3>Team Members</h3>
++<ul>
++<li>Leader: Roy Xu</li>
++<li>UX: Kaizen Castanos</li>
++<li>Backend: Ri Jiu Zheng</li>
++<li>Middleware: Ivan Li</li>
++</ul>
++
++<h3>Features</h3>
++<ul>
++<li>Simple and easy to use interface.</li>
++<li>Beautiful and elegant design.</li>
++<li>Guarantee that your posts will be read by at least two of us.</li>
++<li>Friendly and insightful comment section.</li>
++<li>Secure login system. Why would we want your passwords anyway?</li>
++<li>Profile page to keep track of all your posts and comments.</li>
++</ul>
++
++<h3>How to Use</h3>
++<ol>
++<li> Register an account with the link in the top right.</li>
++<li> You will be redirected back to the home page.</li>
++<li> Posts can be read with the see more button.</li>
++<li> If you like the author, you can click their name to see their profile.</li>
++<li> Comments can be left on an individual post's page.</li>
++<li> When you're ready click Submit Post in the top right to make a post.</li>
++<li> Click on your username in the top right to see your contributions to the site.</li>
++</ol>
++
++<h3>How to Install</h3>
++<h6>even though you already have it installed</h6>
++<ol>
++<li> Make sure you have git installed as well as virtualenv with the flask library. </li>
++<li> Open your terminal and navigate to the folder you wish to install to. </li>
++<li> Copy the clone URL from our github. </li>
++<li> Type "git clone " and then paste the clone URL and press enter. </li>
++<li> Launch your virtualenv. </li>
++<li> Type in "python blogginator9000.py" and press enter. </li>
++<li> Open the web browser of your choice. </li>
++<li> Type in "localhost:5000". </li>
++<li> Enjoy. </li>
++</ol>
++    
++<h3>Timeline</h3>
++October 9th - Databases set up, routes set up, and basic html templates created
++<br>
++October 12th - Login system done
++<br>
++October 13th - Backend done, HTML templates done, posts can be made
++<br>
++October 16th - Routes done
++<br>
++October 17th - CSS done, comments can be made
++<br>
++October 18th - Added profile page and finished readme
++</div>
+ {% endblock %}
