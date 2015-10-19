@@ -27,7 +27,7 @@ def login():
         if (database.authenticate(username, request.form.get("password"))):
             session['user'] = username
             session.permanent = True
-            app.permanent_session_lifetime = timedelta(minutes = 1);
+            app.permanent_session_lifetime = timedelta(minutes = 60);
             return redirect("/")
         else:
             error = "Incorrect username and/or password"
