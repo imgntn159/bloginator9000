@@ -34,7 +34,10 @@ def login():
 @app.route("/register", methods=["GET","POST"])
 def signup():
     if request.method == "GET":
-        return render_template("/signup.html", current_user = session.get('user'))
+        if session.get('user') != None:
+            return redirect("/")
+        else:
+            return render_template("/signup.html", current_user = session.get('user'))
     else:
         if request.form.get("password") == request.form.get("password2"):
             if database.newUser(request.form.get("login"), request.form.get("password")):
