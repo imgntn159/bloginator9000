@@ -66,9 +66,9 @@ def post(postid):
 def makepost():
     if request.method == "GET":
         if session.get('user') == None:
-            return redirect("/register")
+            return redirect("/login")
         else:
-            return render_template("/makepost.html")
+            return render_template("/makepost.html", current_user = session.get('user'))
     else:
         form = request.form
         database.addPost(form.get("title"), form.get("paragraph_text"), session['user'])
