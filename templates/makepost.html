@@ -3,19 +3,52 @@
 {% block body %}
 
 <div class="container-fluid">
-
-  <h1>Blogpost</h1>
-  <form method="post" action="">
-    Title
-    <br>
-    <input type="text" name="title"></input>
-    <br>
-    Body
-    <br>
-    <textarea name="paragraph_text" cols="50" rows="10"></textarea>
-    <p class="submit"><input type="submit" name="commit" value="Submit"></p>
-  </form>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="makepost-title">Submit Post</h1>
+      <form class="makeform-form" method="post">
+        <p>Title</p>
+        <input type="text" name="title"></input>
+        <p>Post</p>
+        <textarea id="post" name="paragraph_text " rows="10" cols="20"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
 
 </div>
+<script type="text/javascript">
+  var observe;
+  if (window.attachEvent) {
+    observe = function (element, event, handler) {
+        element.attachEvent('on'+event, handler);
+    };
+  }
+  else {
+    observe = function (element, event, handler) {
+        element.addEventListener(event, handler, false);
+    };
+  }
+  function init () {
+    var text = document.getElementById('post');
+    function resize () {
+      text.style.height = 'auto';
+      text.style.height = text.scrollHeight+'px';
+    }
+    /* 0-timeout to get the already changed text */
+    function delayedResize () {
+      window.setTimeout(resize, 0);
+    }
+    observe(text, 'change',  resize);
+    observe(text, 'cut',     delayedResize);
+    observe(text, 'paste',   delayedResize);
+    observe(text, 'drop',    delayedResize);
+    observe(text, 'keydown', delayedResize);
+    text.focus();
+    text.select();
+    resize();
+  }
+  init();
+</script>
 
 {% endblock %}
