@@ -3,7 +3,7 @@ import sqlite3, hashlib
 def makeTables():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("create table if not exists post (title text, body text, postid INTEGER PRIMARY KEY, userid text, timestamp DATETIME, CHECK(title <> ''), CHECK(body<> ''))")
+    c.execute("create table if not exists post (title text, body text, postid INTEGER PRIMARY KEY, userid text, timestamp DATETIME, CHECK(title <> ''), CHECK(body <> ''))")
     c.execute("create table if not exists comment (body text, id INTEGER PRIMARY KEY, postid int, userid text, timestamp DATETIME, CHECK(body <> ''))")
     c.execute("create table if not exists user (username text UNIQUE NOT NULL, password text NOT NULL)")
     conn.commit()

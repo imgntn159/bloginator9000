@@ -44,10 +44,10 @@ def signup():
                 return redirect("/")
             else:
                 error = "Username has already been taken"
-                return render_template("signup.html", error=error)
+                return render_template("signup.html", error=error, current_user = None)
         else:
             error = "Passwords do not match"
-            return render_template("signup.html", error=error)
+            return render_template("signup.html", error=error, current_user = None)
 
 @app.route("/logout")
 def logout():
@@ -74,11 +74,14 @@ def makepost():
             return render_template("/makepost.html", current_user = session.get('user'))
     else:
         form = request.form
+        print form.get("paragraph_text")
         database.addPost(form.get("title"), form.get("paragraph_text"), session['user'])
         return redirect("/")
 
 @app.route("/user")
 def getuser():
+    if session.get('user') == None:
+        return redirect("/login")
     return redirect("/user/" + session['user'])
 
 @app.route("/user/<userid>")
