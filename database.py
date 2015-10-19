@@ -3,16 +3,20 @@ import sqlite3, hashlib
 def makeTables():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("create table if not exists post (title text NOT NULL, body text NOT NULL, postid INTEGER PRIMARY KEY, userid text, timestamp DATETIME)")
-    c.execute("create table if not exists comment (body text NOT NULL, id INTEGER PRIMARY KEY, postid int, userid text, timestamp DATETIME)")
-    c.execute("create table if not exists user (username text, password text, id text)")
+    c.execute("create table if not exists post (title text, body text, postid INTEGER PRIMARY KEY, userid text, timestamp DATETIME, CHECK(title <> ''), CHECK(body<> ''))")
+    c.execute("create table if not exists comment (body text, id INTEGER PRIMARY KEY, postid int, userid text, timestamp DATETIME, CHECK(body <> ''))")
+    c.execute("create table if not exists user (username text UNIQUE NOT NULL, password text NOT NULL)")
     conn.commit()
 
 def addPost(title, body, userid):
-    conn = sqlite3.connect("bloginator9000.db")
-    c = conn.cursor()
-    c.execute("insert into post values ('{}', '{}', NULL, '{}', datetime(CURRENT_TIMESTAMP))".format(title, body, userid))
-    conn.commit()
+    try:
+        conn = sqlite3.connect("bloginator9000.db")
+        c = conn.cursor()
+        c.execute("insert into post values ('{}', '{}', NULL, '{}', datetime(CURRENT_TIMESTAMP))".format(title, body, userid))
+        conn.commit()
+        return True
+    except:
+        return False
 
 def getPosts():
     conn = sqlite3.connect("bloginator9000.db")
@@ -32,10 +36,14 @@ def getPost(key, postid):
     return data
 
 def addComment(body, replyid, userid):
-    conn = sqlite3.connect("bloginator9000.db")
-    c = conn.cursor()
-    c.execute("insert into comment values ('{}', NULL, '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, replyid, userid))
-    conn.commit()
+    try:
+        conn = sqlite3.connect("bloginator9000.db")
+        c = conn.cursor()
+        c.execute("insert into comment values ('{}', NULL, '{}', '{}', datetime(CURRENT_TIMESTAMP))".format(body, replyid, userid))
+        conn.commit()
+        return True
+    except:
+        return False
 
 def getComments(key, postid):
     conn = sqlite3.connect("bloginator9000.db")
@@ -47,19 +55,16 @@ def getComments(key, postid):
     return data
 
 def newUser(username, password):
-    conn = sqlite3.connect("bloginator9000.db")
-    c = conn.cursor()
-    isTaken = "SELECT username FROM user WHERE username=\"%s\" LIMIT 1" % (username)
-    c.execute(isTaken)
-    data = c.fetchone()
-    if data is None :
+    try:
+        conn = sqlite3.connect("bloginator9000.db")
+        c = conn.cursor()
         m = hashlib.sha224(password)
-        u = hashlib.sha224(username)
-        query = "INSERT INTO user VALUES (\"%s\", \"%s\", \"%s\")" % (username, m.hexdigest(), u.hexdigest())
+        query = "INSERT INTO user VALUES (\"%s\", \"%s\"" % (username, m.hexdigest())
         c.execute(query)
         conn.commit()
         return True
-    return False
+    except:
+        return False
 
 def authenticate(username, password):
     conn = sqlite3.connect("bloginator9000.db")
