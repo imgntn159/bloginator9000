@@ -74,7 +74,6 @@ def makepost():
             return render_template("/makepost.html", current_user = session.get('user'))
     else:
         form = request.form
-        print form.get("paragraph_text")
         database.addPost(form.get("title"), form.get("paragraph_text"), session['user'])
         return redirect("/")
 
@@ -86,7 +85,6 @@ def getuser():
 
 @app.route("/user/<userid>")
 def profile(userid):
-    print database.getPost("userid",userid)
     return render_template("profile.html", current_user = session['user'], blogitems = database.getPost("userid",userid), comments = database.getComments("userid",userid));
 
 if __name__ == "__main__":

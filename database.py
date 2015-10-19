@@ -59,7 +59,7 @@ def newUser(username, password):
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
         m = hashlib.sha224(password)
-        query = "INSERT INTO user VALUES (\"%s\", \"%s\"" % (username, m.hexdigest())
+        query = "INSERT INTO user VALUES (\"%s\", \"%s\")" % (username, m.hexdigest())
         c.execute(query)
         conn.commit()
         return True
