@@ -12,7 +12,7 @@
   margin-bottom: 10px;
 }
 .navbar-brand {
-  font-size: 28px;
+  font-size: 24px;
   color: black !important;
 }
 .navbar-header {
@@ -41,6 +41,7 @@
 .blog-post {
   margin-right: auto;
   margin-left: auto;
+  height: 300px;
 }
 .see-more {
   margin-left: auto;
@@ -66,16 +67,13 @@
 }
 .blog-text {
   margin-top: 20px;
-  width: 400px;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
   min-height: 100px;
   max-height: 150px;
   overflow: hidden;
-}
-.blog-row {
-  height: 300px;
 }
 .login {
   width: 380px;
