@@ -1,24 +1,25 @@
 {% extends "master.html" %}
 
 {% block body %}
-  {% for blogitem in blogitems %}
-    {% if (loop.index % 2) == 1 %}
-      <div class="row">
-    {% endif %}
+
+{% for blogitem in blogitems %}
+  {% if (loop.index % 2) == 1 %}
+    <div class="row">
+  {% endif %}
     <div class="col-md-6 col-sm-12 blog-post">
       <h3 class="blog-title text-center">{{blogitem.title}}</h3>
       <h6 class="blog-writer text-center">Written by <a href="/user/{{blogitem.username}}">{{blogitem.username}}</a> on {{blogitem.date}}</h6>
 
       <p class="blog-text">{{blogitem.blogtext}}</p>
-      <div class="see-more-contain">
+      <div class ="see-more-contain">
         <form action="/post/{{blogitem.postid}}">
           <button class="see-more">see more</button>
         </form>
       </div>
     </div>
-    {% if (loop.index % 2) == 0 %}
-      </div>
-      <hr class="hrline">
-    {% endif %}
-  {% endfor %}
+  {% if (loop.index % 2) == 0 %}
+    </div>
+    <hr class="hrline">
+  {% endif %}
+{% endfor %}
 {% endblock %}

@@ -1,8 +1,5 @@
-import sqlite3
-import hashlib
-import diagnostic
+import sqlite3, hashlib
 
-@diagnostic.funcTime
 def makeTables():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
@@ -11,77 +8,64 @@ def makeTables():
     c.execute("create table if not exists user (username text UNIQUE, password text, CHECK(username <> ''), CHECK(password <> ''))")
     conn.commit()
 
-@diagnostic.funcTime
 def addPost(title, body, userid):
     try:
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
-        c.execute(
-            "insert into post values (?, ?, NULL, ?, datetime(CURRENT_TIMESTAMP))", (title, body, userid))
+        c.execute("insert into post values (?, ?, NULL, ?, datetime(CURRENT_TIMESTAMP))",(title, body, userid))
         conn.commit()
         return True
     except:
         return False
-@diagnostic.funcTime
+
 def getPosts():
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
     c.execute("select * from post order by timestamp")
     data = c.fetchall()
     data.reverse()
-    data = [dict(zip(['title', 'blogtext', 'postid', 'username', 'date'], each))
-            for each in data]
+    data = [dict(zip(['title','blogtext','postid','username','date'], each)) for each in data]
     return data
 
-@diagnostic.funcTime
 def getPost(key, postid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute("select * from post where {} = '{}'".format(key, postid))
+    c.execute("select * from post where {} = '{}'".format(key,postid))
     data = c.fetchall()
-    data = [dict(zip(['title', 'blogtext', 'postid', 'username', 'date'], each))
-            for each in data]
+    data = [dict(zip(['title','blogtext','postid','username','date'], each)) for each in data]
     return data
 
-@diagnostic.funcTime
 def addComment(body, replyid, userid):
     try:
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
-        c.execute("insert into comment values (?, NULL, ?, ?, datetime(CURRENT_TIMESTAMP))",
-                  (body, replyid, userid))
+        c.execute("insert into comment values (?, NULL, ?, ?, datetime(CURRENT_TIMESTAMP))",(body, replyid, userid))
         conn.commit()
         return True
     except:
         return False
 
-@diagnostic.funcTime
 def getComments(key, postid):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
-    c.execute(
-        "select * from comment where {} = '{}' order by timestamp".format(key, postid))
+    c.execute("select * from comment where {} = '{}' order by timestamp".format(key,postid))
     data = c.fetchall()
     data.reverse()
-    data = [dict(zip(['commenttext', 'commentid', 'postid',
-                      'username', 'date'], each)) for each in data]
+    data = [dict(zip(['commenttext','commentid','postid','username','date'], each)) for each in data]
     return data
 
-@diagnostic.funcTime
 def newUser(username, password):
     try:
         conn = sqlite3.connect("bloginator9000.db")
         c = conn.cursor()
         m = hashlib.sha224(password)
-        query = "INSERT INTO user VALUES (\"%s\", \"%s\")" % (
-            username, m.hexdigest())
+        query = "INSERT INTO user VALUES (\"%s\", \"%s\")" % (username, m.hexdigest())
         c.execute(query)
         conn.commit()
         return True
     except:
         return False
 
-@diagnostic.funcTime
 def authenticate(username, password):
     conn = sqlite3.connect("bloginator9000.db")
     c = conn.cursor()
